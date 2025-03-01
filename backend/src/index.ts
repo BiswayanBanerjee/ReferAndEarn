@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Allowed origins for CORS
-const allowedOrigins = ["http://localhost:3000", "https://your-frontend.netlify.app"];
+const allowedOrigins = ["http://localhost:3000", "https://referandearn-wl4l.onrender.com"];
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 // Middleware
