@@ -8,12 +8,13 @@ const router = Router();
 router.post("/send-otp", sendOTP);
 router.post("/login", loginWithOTP);
 router.get("/ping", pingServer);
-router.post("/check-referral", checkReferral);
+
 
 // Protected Routes (Require Token)
 router.get("/programs", fetchPrograms);
 router.post("/refer", authenticate, refer);
 router.post("/referrals", authenticate, fetchReferrals);
+router.post("/check-referral", authenticate, checkReferral);
 
 export default router;
 
