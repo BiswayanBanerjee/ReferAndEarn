@@ -24,11 +24,11 @@ app.use("/api/auth", authRoutes);
 const startServer = async () => {
   try {
     await prisma.$connect(); // Ensure Prisma can connect to the DB
-    console.log("✅ Connected to MySQL via Prisma");
+    console.log(" Connected to MySQL via Prisma");
 
     app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
   } catch (error) {
-    console.error("❌ Error starting the server:", error);
+    console.error(" Error starting the server:", error);
     process.exit(1); // Exit process on failure
   }
 };
