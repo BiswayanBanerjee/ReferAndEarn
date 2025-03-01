@@ -140,7 +140,7 @@ const ReferralModal = ({ open, handleClose }) => {
 
       // Check for existing referral before submitting
       const checkResponse = await axios.post(
-        "http://localhost:5000/api/auth/check-referral",
+        "https://referandearn-7tsl.onrender.com/api/auth/check-referral",
         { referee_email: data.refereeEmail },
         { headers: { Authorization: `Bearer ${sessionStorage.getItem("authToken")}` } }
       );
