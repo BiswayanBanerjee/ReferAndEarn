@@ -15,8 +15,8 @@ const ReferralModal = ({ open, handleClose }) => {
   const [referrals, setReferrals] = useState([]);
   const [selectedBonus, setSelectedBonus] = useState(null);
   const [isDuplicateReferee, setIsDuplicateReferee] = useState(false); // State for duplicate check
-  const [isLoading, setIsLoading] = useState(false); // 🔥 Track loading state
-  const isMobile = useMediaQuery("(max-width: 600px)"); // ✅ Responsive check
+  const [isLoading, setIsLoading] = useState(false); //  Track loading state
+  const isMobile = useMediaQuery("(max-width: 600px)"); //  Responsive check
 
   const { control, handleSubmit, watch, setValue, trigger, formState: { errors }, } = useForm({ defaultValues: { referrerEmail: "", otp: "", refereeEmail: "", program: "", }, });
 
