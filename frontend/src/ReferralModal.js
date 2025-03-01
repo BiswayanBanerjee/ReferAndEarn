@@ -26,7 +26,7 @@ const ReferralModal = ({ open, handleClose }) => {
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/auth/programs");
+        const res = await axios.get("https://referandearn-7tsl.onrender.com/api/auth/programs");
         console.log("Programs API Response:", res.data);
         setPrograms(res.data.programs || []);
       } catch (err) {
@@ -35,7 +35,7 @@ const ReferralModal = ({ open, handleClose }) => {
     };
 
     fetchPrograms();
-  }, []); // ✅ Fetch programs only once when the component mounts
+  }, []); //  Fetch programs only once when the component mounts
 
   // Separate effect for handling bonus based on selected program
   useEffect(() => {
@@ -51,14 +51,14 @@ const ReferralModal = ({ open, handleClose }) => {
         setSelectedBonus(null);
       }
     }
-  }, [selectedProgram, programs]); // ✅ Update bonus when the selected program changes
+  }, [selectedProgram, programs]); //  Update bonus when the selected program changes
 
 
   const sendOtp = async () => {
     setIsSendingOtp(true);
     sessionStorage.removeItem("authToken"); // Clear session storage before sending OTP
     try {
-      await axios.post("http://localhost:5000/api/auth/send-otp", { email: referrerEmail });
+      await axios.post("https://referandearn-7tsl.onrender.com/api/auth/send-otp", { email: referrerEmail });
       setOtpSent(true);
       toast.success("OTP sent successfully!");
     } catch (error) {
@@ -72,7 +72,7 @@ const ReferralModal = ({ open, handleClose }) => {
     sessionStorage.removeItem("authToken"); // Clear session storage before login
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", {
+      const response = await axios.post("https://referandearn-7tsl.onrender.com/api/auth/login", {
         email: referrerEmail,
         otp: watch("otp"),
       });
@@ -82,7 +82,7 @@ const ReferralModal = ({ open, handleClose }) => {
       setOtpVerified(true);
       toast.success("OTP verified successfully!");
 
-      // ✅ Fetch referrals only after OTP verification and token storage
+      //  Fetch referrals only after OTP verification and token storage
       if (authToken) {
         fetchReferrals(authToken, referrerEmail);
       }
@@ -93,14 +93,14 @@ const ReferralModal = ({ open, handleClose }) => {
     setIsVerifyingOtp(false);
   };
 
-  // ✅ Modify fetchReferrals to accept authToken and email as parameters
+  //  Modify fetchReferrals to accept authToken and email as parameters
   const fetchReferrals = async (authToken, email) => {
     if (!authToken || !email) return;
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/referrals", // ✅ Change GET to POST
-        { email }, // ✅ Send email in request body (like Postman)
+        "https://referandearn-7tsl.onrender.com/api/auth/referrals", //  Change GET to POST
+        { email }, //  Send email in request body (like Postman)
         {
           headers: {
             Authorization: `Bearer ${authToken}`,
@@ -120,7 +120,7 @@ const ReferralModal = ({ open, handleClose }) => {
 
   const onSubmit = async (data) => {
     try {
-      setIsLoading(true); // 🔥 Start loading animation
+      setIsLoading(true); //  Start loading animation
 
       const program = programs.find((p) => p.name === data.program);
       if (!program) {
@@ -146,7 +146,7 @@ const ReferralModal = ({ open, handleClose }) => {
       );
 
       if (checkResponse.data.exists) {
-        setIsDuplicateReferee(true); // ✅ Update UI state
+        setIsDuplicateReferee(true); //  Update UI state
         toast.error("Duplicate referral is not possible. This email has already been referred.");
         setIsLoading(false); // 🔥 Stop loading
         return;
@@ -157,7 +157,7 @@ const ReferralModal = ({ open, handleClose }) => {
       console.log("Submitting referral:", payload);
 
       const response = await axios.post(
-        "http://localhost:5000/api/auth/refer",
+        "https://referandearn-7tsl.onrender.com/api/auth/refer",
         payload,
         { headers: { Authorization: `Bearer ${sessionStorage.getItem("authToken")}` } }
       );
@@ -178,7 +178,7 @@ const ReferralModal = ({ open, handleClose }) => {
       onClose={handleClose}
       maxWidth="sm"
       fullWidth
-      fullScreen={isMobile} // ✅ Full screen on mobile for better UX
+      fullScreen={isMobile} //  Full screen on mobile for better UX
     >
       <Paper elevation={4} sx={{ p: isMobile ? 2 : 3, borderRadius: 2 }}>
         {/* Header with Close Button */}
@@ -322,7 +322,7 @@ const ReferralModal = ({ open, handleClose }) => {
                   <Button
                     onClick={handleClose}
                     color="secondary"
-                    sx={{ width: isMobile ? "100%" : "auto" }} // ✅ Full width on mobile
+                    sx={{ width: isMobile ? "100%" : "auto" }} //  Full width on mobile
                   >
                     Cancel
                   </Button>
