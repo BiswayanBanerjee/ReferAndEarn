@@ -9,7 +9,6 @@ router.post("/send-otp", sendOTP);
 router.post("/login", loginWithOTP);
 router.get("/ping", pingServer);
 
-
 // Protected Routes (Require Token)
 router.get("/programs", fetchPrograms);
 router.post("/refer", authenticate, refer);
