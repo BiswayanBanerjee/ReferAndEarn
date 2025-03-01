@@ -1,6 +1,7 @@
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 generator client {
@@ -10,8 +11,8 @@ generator client {
 model Program {
   id                    Int      @id @default(autoincrement())
   name                  String   @unique
-  referrer_bonus_amount Decimal
-  referee_bonus_amount  Decimal
+  referrer_bonus_amount Float
+  referee_bonus_amount  Float
   users                 User[]
 }
 
