@@ -14,7 +14,7 @@ const LandingPage = () => {
   return (
     <>
       {/* Ping Modal to wake up the backend */}
-      <PingModal backendUrl="http://localhost:5000" />
+      <PingModal backendUrl="https://referandearn-7tsl.onrender.com" />
       <Navbar />
       <SubNav />
 
