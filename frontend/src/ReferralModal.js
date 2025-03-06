@@ -52,7 +52,17 @@ const ReferralModal = ({ open, handleClose }) => {
       }
     }
   }, [selectedProgram, programs]); //  Update bonus when the selected program changes
+  
+useEffect(() => {
+    const authToken = sessionStorage.getItem("authToken");
+    const storedEmail = sessionStorage.getItem("referrerEmail"); //  Get email from sessionStorage
 
+    if (authToken && storedEmail) {
+      setOtpVerified(true);
+      setValue("referrerEmail", storedEmail); //  Set email in the form
+      fetchReferrals(authToken, storedEmail);
+    }
+  }, [open]); //  Runs when the modal opens
 
   const sendOtp = async () => {
     setIsSendingOtp(true);
@@ -79,6 +89,7 @@ const ReferralModal = ({ open, handleClose }) => {
 
       const authToken = response.data.token;
       sessionStorage.setItem("authToken", authToken);
+      sessionStorage.setItem("referrerEmail", referrerEmail);
       setOtpVerified(true);
       toast.success("OTP verified successfully!");
 
