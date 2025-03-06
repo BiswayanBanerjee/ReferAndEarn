@@ -47,6 +47,7 @@ const ReferralModal = ({ open, handleClose }) => {
           referrerBonus: programData.referrer_bonus_amount,
           refereeBonus: programData.referee_bonus_amount,
         });
+        sessionStorage.setItem("program",selectedProgram);
       } else {
         setSelectedBonus(null);
       }
@@ -60,6 +61,7 @@ useEffect(() => {
     if (authToken && storedEmail) {
       setOtpVerified(true);
       setValue("referrerEmail", storedEmail); //  Set email in the form
+      setValue("program", storedProgram); //  Set email in the form
       fetchReferrals(authToken, storedEmail);
     }
   }, [open]); //  Runs when the modal opens
