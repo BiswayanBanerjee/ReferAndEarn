@@ -57,6 +57,7 @@ const ReferralModal = ({ open, handleClose }) => {
 useEffect(() => {
     const authToken = sessionStorage.getItem("authToken");
     const storedEmail = sessionStorage.getItem("referrerEmail"); //  Get email from sessionStorage
+    const storedProgram = sessionStorage.getItem("program");
 
     if (authToken && storedEmail) {
       setOtpVerified(true);
