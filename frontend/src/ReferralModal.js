@@ -333,7 +333,7 @@ useEffect(() => {
 
                 {/* Submit Button */}
                 <DialogActions sx={{ flexDirection: isMobile ? "column" : "row" }}>
-                  <Button onClick={() => {setOtpVerified(false); sessionStorage.removeItem("authToken"); sessionStorage.removeItem("referrerEmail"); setOtpSent(false); setValue("referrerEmail",""); setValue("otp",""); setReferrals([])}}color="primary" sx={{ width: isMobile ? "100%" : "auto" }} >
+                  <Button onClick={() => {setOtpVerified(false); sessionStorage.removeItem("authToken"); sessionStorage.removeItem("referrerEmail"); sessionStorage.removeItem("program"); setOtpSent(false); setValue("referrerEmail",""); setValue("otp",""); setReferrals([]); setSelectedBonus(null); setValue("program","")}}color="primary" sx={{ width: isMobile ? "100%" : "auto" }} >
                     Change Email
                   </Button>
                   <Button
