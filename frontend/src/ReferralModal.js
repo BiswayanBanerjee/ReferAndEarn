@@ -333,6 +333,9 @@ useEffect(() => {
 
                 {/* Submit Button */}
                 <DialogActions sx={{ flexDirection: isMobile ? "column" : "row" }}>
+                  <Button onClick={() => {setOtpVerified(false); sessionStorage.removeItem("authToken"); sessionStorage.removeItem("referrerEmail"); setOtpSent(false); setValue("referrerEmail",""); setValue("otp",""); setReferrals([])}}color="primary" sx={{ width: isMobile ? "100%" : "auto" }} >
+                    Change Email
+                  </Button>
                   <Button
                     onClick={handleClose}
                     color="secondary"
